@@ -37,7 +37,7 @@ export default {
           600: 'hsl(var(--primary-600) / <alpha-value>)',
           700: 'hsl(var(--primary-700) / <alpha-value>)',
           800: 'hsl(var(--primary-800) / <alpha-value>)',
-          900: 'hsl(var(--primary-900) / <alpha-value>)'
+          900: 'hsl(var(--primary-900) / <alpha-value>)',
         },
         secondary: {
           DEFAULT: 'hsl(var(--secondary) / <alpha-value>)',
@@ -51,7 +51,7 @@ export default {
           600: 'hsl(var(--secondary-600) / <alpha-value>)',
           700: 'hsl(var(--secondary-700) / <alpha-value>)',
           800: 'hsl(var(--secondary-800) / <alpha-value>)',
-          900: 'hsl(var(--secondary-900) / <alpha-value>)'
+          900: 'hsl(var(--secondary-900) / <alpha-value>)',
         },
         accent: {
           DEFAULT: 'hsl(var(--accent) / <alpha-value>)',
@@ -65,77 +65,71 @@ export default {
           600: 'hsl(var(--accent-600) / <alpha-value>)',
           700: 'hsl(var(--accent-700) / <alpha-value>)',
           800: 'hsl(var(--accent-800) / <alpha-value>)',
-          900: 'hsl(var(--accent-900) / <alpha-value>)'
+          900: 'hsl(var(--accent-900) / <alpha-value>)',
         },
         success: {
           DEFAULT: 'hsl(var(--success) / <alpha-value>)',
           foreground: 'hsl(var(--success-foreground) / <alpha-value>)',
-          muted: 'hsl(var(--success-muted) / <alpha-value>)'
+          muted: 'hsl(var(--success-muted) / <alpha-value>)',
         },
         warning: {
           DEFAULT: 'hsl(var(--warning) / <alpha-value>)',
           foreground: 'hsl(var(--warning-foreground) / <alpha-value>)',
-          muted: 'hsl(var(--warning-muted) / <alpha-value>)'
+          muted: 'hsl(var(--warning-muted) / <alpha-value>)',
         },
         error: {
           DEFAULT: 'hsl(var(--error) / <alpha-value>)',
           foreground: 'hsl(var(--error-foreground) / <alpha-value>)',
-          muted: 'hsl(var(--error-muted) / <alpha-value>)'
+          muted: 'hsl(var(--error-muted) / <alpha-value>)',
         },
         info: {
           DEFAULT: 'hsl(var(--info) / <alpha-value>)',
           foreground: 'hsl(var(--info-foreground) / <alpha-value>)',
-          muted: 'hsl(var(--info-muted) / <alpha-value>)'
+          muted: 'hsl(var(--info-muted) / <alpha-value>)',
         },
         surface: {
           DEFAULT: 'hsl(var(--surface) / <alpha-value>)',
           foreground: 'hsl(var(--surface-foreground) / <alpha-value>)',
-          muted: 'hsl(var(--surface-muted) / <alpha-value>)'
+          muted: 'hsl(var(--surface-muted) / <alpha-value>)',
         },
         background: 'hsl(var(--background) / <alpha-value>)',
         foreground: 'hsl(var(--foreground) / <alpha-value>)',
         card: {
           DEFAULT: 'hsl(var(--card) / <alpha-value>)',
-          foreground: 'hsl(var(--card-foreground) / <alpha-value>)'
+          foreground: 'hsl(var(--card-foreground) / <alpha-value>)',
         },
         popover: {
           DEFAULT: 'hsl(var(--popover) / <alpha-value>)',
-          foreground: 'hsl(var(--popover-foreground) / <alpha-value>)'
+          foreground: 'hsl(var(--popover-foreground) / <alpha-value>)',
         },
         muted: {
           DEFAULT: 'hsl(var(--muted) / <alpha-value>)',
-          foreground: 'hsl(var(--muted-foreground) / <alpha-value>)'
+          foreground: 'hsl(var(--muted-foreground) / <alpha-value>)',
         },
         border: 'hsl(var(--border) / <alpha-value>)',
         input: 'hsl(var(--input) / <alpha-value>)',
-        ring: 'hsl(var(--ring) / <alpha-value>)'
+        ring: 'hsl(var(--ring) / <alpha-value>)',
       },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)'
+        sm: 'calc(var(--radius) - 4px)',
       },
       keyframes: {
-        'task-complete': {
-          '0%': { transform: 'scale(1)' },
-          '50%': { transform: 'scale(1.05)' },
-          '100%': { transform: 'scale(1)' }
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
-        'slide-in': {
-          '0%': { transform: 'translateX(-100%)' },
-          '100%': { transform: 'translateX(0)' }
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
-        'slide-out': {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(100%)' }
-        }
       },
       animation: {
-        'task-complete': 'task-complete 0.3s ease-in-out',
-        'slide-in': 'slide-in 0.2s ease-out',
-        'slide-out': 'slide-out 0.2s ease-in'
-      }
-    }
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+      },
+    },
   },
   plugins: [
     tailwindcssAnimate,
@@ -143,6 +137,6 @@ export default {
     tailwindcssForms,
     tailwindcssAspectRatio,
     tailwindcssContainerQueries,
-    tailwindScrollbar({ nocompatible: true })
+    tailwindScrollbar({ nocompatible: true }),
   ],
 } satisfies Config;
