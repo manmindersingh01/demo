@@ -6,12 +6,10 @@ import react from "eslint-plugin-react";
 import tseslint from "typescript-eslint";
 
 export default tseslint.config(
-  // Ignore build, UI components, Tailwind files, and entrypoint
-  { ignores: ["dist", "src/components/ui", "src/main.tsx", "tailwind.config.*", "postcss.config.*"] },
-
+  { ignores: ["dist", "src/components/ui", "src/main.tsx"] },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
-    files: ["/*.{ts,tsx}"],
+    files: ["**/*.{ts,tsx}"],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
@@ -22,45 +20,41 @@ export default tseslint.config(
       },
     },
     plugins: {
-      react: react,
+      "react": react,
       "react-hooks": reactHooks,
       "react-refresh": reactRefresh,
     },
     rules: {
       // === RUNTIME/APP-BREAKING ERRORS ONLY ===
-
-      // Turn off no-undef (ignore undefined variables in React)
+      
+      // Undefined Variables/Components (like HelpCircle)
       "no-undef": "off",
-      "react/jsx-no-undef": "off",
-
+      "react/jsx-no-undef": "error",
+      
       // React Runtime Crashes
       "react/jsx-key": "error",                // Missing keys crash React lists
       "react/jsx-no-duplicate-props": "error", // Duplicate props break components
       "react/no-unescaped-entities": "error",  // Unescaped & < > break JSX parsing
       "react/no-unknown-property": "error",    // Invalid DOM props crash rendering
-
+      
       // React Hooks (prevent crashes and infinite loops)
       ...reactHooks.configs.recommended.rules,
-
-      // Disable react-hooks errors for react.useEffect usage
-      "react-hooks/rules-of-hooks": "off",
-      "react-hooks/exhaustive-deps": "off",
-
+      
       // JavaScript Runtime Errors
-      "no-unreachable": "error",
-      "no-duplicate-case": "error",
-      "no-obj-calls": "error",
-      "no-sparse-arrays": "error",
-      "use-isnan": "error",
-      "valid-typeof": "error",
-      "no-irregular-whitespace": "error",
-
+      "no-unreachable": "error",               // Dead code indicates logic errors
+      "no-duplicate-case": "error",            // Duplicate switch cases
+      "no-obj-calls": "error",                 // Calling non-functions crashes
+      "no-sparse-arrays": "error",             // [1,,3] creates unexpected undefined
+      "use-isnan": "error",                    // === NaN never works
+      "valid-typeof": "error",                 // typeof typos always fail
+      "no-irregular-whitespace": "error",      // Invisible chars break parsing
+      
       // TypeScript Runtime Errors
-      "@typescript-eslint/no-non-null-assertion": "error",
-
-      // Async Errors
-      "no-async-promise-executor": "error",
-
+      "@typescript-eslint/no-non-null-assertion": "error", // x! when x is null crashes
+      
+      // Async Errors (common runtime issues)
+      "no-async-promise-executor": "error",    // Breaks promise handling
+      
       // === DISABLE ALL NON-BREAKING RULES ===
       "@typescript-eslint/no-unused-vars": "off",
       "@typescript-eslint/no-explicit-any": "off",
