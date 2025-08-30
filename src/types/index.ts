@@ -1,13 +1,6 @@
-export type Priority = 'low' | 'medium' | 'high';
-
-export type FilterStatus = 'all' | 'active' | 'completed';
-
-export interface Todo {
+export interface Task {
   id: string;
-  title: string;
-  description?: string;
+  text: string;
   completed: boolean;
-  priority: Priority;
-  createdAt: Date;
-  dueDate?: Date;
+  createdAt: string;
 }
